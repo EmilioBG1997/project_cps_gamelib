@@ -1,0 +1,13 @@
+language: python
+python:
+  - "3.8.2"
+matrix:
+  include:
+    - python: 3.8.2
+      dist: xenial
+      sudo: true
+install:
+- pip install requests
+script:
+- python3 test_juego.py
+
