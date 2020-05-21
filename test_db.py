@@ -34,10 +34,9 @@ class test_DB(unittest.TestCase):
 
         for tc in testCases:
             dbMock = MagicMock()
-            dbMock = tc["ex"]
-            real = self.db.Create_Biblio(tc['in'])
-            self.assertEqual(dbMock,real)
+            dbMock.Add_juego.return_value = tc['ex']
+            real = addGame(dbMock,tc['in'])
+            self.assertEqual(tc["ex"],real)
         
 if __name__ == '__main__':
     unittest.main()
-    

@@ -52,6 +52,10 @@ class DB_Biblioteca(DataBase):
         self.conexion.commit()
         return ("Juego Agregado a biblioteca")
 
+def addGame(db, juego):
+    r = db.Add_juego(juego)
+    return r
+
 if __name__ == '__main__':
     db = DB_Biblioteca()
     db.Create_Biblio("Accion")
