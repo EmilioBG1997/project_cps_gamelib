@@ -42,9 +42,12 @@ class DB_Biblioteca(DataBase):
             return "Error al crear Biblioteca"
     
     def Add_juego(self, juego: dict, nombre: str):
-        select = f"SELECT id FROM {nombre} WHERE name = '{juego['name']}'"
-        if self.conexion.execute(select).fetchone():
-            return ("El juego ya existe en la biblioteca")
+        try:
+            select = f"SELECT id FROM {nombre} WHERE name = '{juego['name']}'"
+            if self.conexion.execute(select).fetchone():
+                return ("El juego ya existe en la biblioteca")
+        except:
+                return("La biblioteca no existe")
         self.cursor.execute(f'''
         INSERT INTO {nombre} (name, description, rating, release, picture, platforms, developers, genre, esrb) 
         VALUES ("{juego.get('name')}", "{juego.get('desc')}", {juego.get("rating")},"{juego.get("fecha")}","{juego.get('picture')}","{juego.get('platforms')}","{juego.get('devs')}","{juego.get('genres')}","{juego.get('esrb')}");
@@ -52,10 +55,13 @@ class DB_Biblioteca(DataBase):
         self.conexion.commit()
         return ("Juego Agregado a biblioteca")
 
-def addGame(db, juego):
-    r = db.Add_juego(juego)
+def addBiblio(db, biblio):
+    r = db.Create_Biblio(biblio)
     return r
 
+def addGame(db, juego,biblio):
+    r = db.Add_juego(juego,biblio)
+    return r
 if __name__ == '__main__':
     db = DB_Biblioteca()
     db.Create_Biblio("Accion")
