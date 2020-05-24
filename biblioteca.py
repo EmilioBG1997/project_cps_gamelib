@@ -5,16 +5,12 @@ class Biblioteca(object):
     def __init__(self, nombre: str):
         self.nombre = nombre
         self.juegos = []
-
-    def addJuego(self, juego: juego):
-        self.juegos.append(juego)
     
-    def biblio_getjuegos(self):
-        lista = []
-        for i in self.juegos:
-            lista.append(i.get_everything())
-        return lista
-
+    def __str__(self):
+        return f'''
+        Biblioteca: {self.nombre},
+        Juegos: {self.juegos}
+        '''
 
 if __name__ == '__main__':
     rawg =rawg_juego()

@@ -8,6 +8,7 @@ class test_DB(unittest.TestCase):
     def setUp(self):
         self.db = DB_Biblioteca()
         self.db.Create_Biblio("Aventura")
+        self.db.Create_Biblio("Estrategia")
         juego = {
                     'name': 'The Legend of Zelda: Ocarina of Time', 
                     'desc': "The Legend of Zelda™: Ocarina of Time™ – one of the most critically\nacclaimed games ever made –returns on the Nintendo eShop for Wii U™. Set\noff on a legendary journey to stop Ganondorf, who has plunged Hyrule\ninto darkness. Travel through time as child and adult Link™ and\nexperience Hyrule in peace and war to save the world and protect the\nTriforce.\n\nYour quest takes you through dense forests and across wind-whipped\ndeserts. Swim raging rivers, climb treacherous mountains, dash on\nhorseback across rolling hills, and delve into dungeons full of\ncreatures that fight to the finish to put an end to your adventures. As\nLink, you'll also travel through time to solve puzzles, save friends,\nand right Ganondorf's wrongs with the help from your trusty Ocarina of\nTime and the mysterious youth, Sheik. The Legend of Zelda: Ocarina of\nTime is one of Nintendo's most epic challenges ever and one of its most\ntouching stories, and is an absolute must-play for Nintendo fans.\nThis classic game is part of the Virtual Console service, which brings you great games created for consoles such as NES™, Super NES™ and Game Boy™ Advance. We hope you'll enjoy the new features (including off-TV play) that have been added to this title. See more Virtual Console games for Wii U.", 
@@ -29,19 +30,19 @@ class test_DB(unittest.TestCase):
         testCases=[
             {
                 "in": "Shooters",
-                "ex": "La Biblioteca Se creo Exitosamente"
+                "ex": "La Biblioteca se creo exitosamente"
             },
             {
                 "in": "Accion",
-                "ex": "La Biblioteca Se creo Exitosamente"
+                "ex": "La Biblioteca se creo exitosamente"
             },
             {
                 "in": 1,
-                "ex": "Error al crear Biblioteca"
+                "ex": "Error al crear biblioteca"
             },
             {
                 "in":"MEJORES JUEGOS",
-                "ex": "Error al crear Biblioteca"
+                "ex": "Error al crear biblioteca"
             }
         ]
 
@@ -56,19 +57,19 @@ class test_DB(unittest.TestCase):
         testCases=[
             {
                 "in": "Shooters",
-                "ex": "La Biblioteca Se creo Exitosamente"
+                "ex": "La biblioteca se creo exitosamente"
             },
             {
                 "in": "Accion",
-                "ex": "La Biblioteca Se creo Exitosamente"
+                "ex": "La biblioteca se creo exitosamente"
             },
             {
                 "in": 1,
-                "ex": "Error al crear Biblioteca"
+                "ex": "Error al crear biblioteca"
             },
             {
                 "in":"MEJORES JUEGOS",
-                "ex": "Error al crear Biblioteca"
+                "ex": "Error al crear biblioteca"
             }
         ]
         for tc in testCases:
@@ -121,7 +122,7 @@ class test_DB(unittest.TestCase):
                     'esrb': 'Mature'
                 },
                 "inBiblio": "Aventura",
-                "ex": "Juego Agregado a biblioteca"
+                "ex": "Juego agregado a biblioteca"
             }
         ]
 
@@ -177,12 +178,101 @@ class test_DB(unittest.TestCase):
                     'esrb': 'Mature'
                 },
                 "inBiblio": "Aventura",
-                "ex": "Juego Agregado a biblioteca"
+                "ex": "Juego agregado a biblioteca"
             }
         ]
         for tc in testCases:
             real = self.db.Add_juego(tc["inGame"],tc["inBiblio"])
             self.assertEqual(real,tc["ex"])
-            
+######################################################### TEST MOCK REMOVER JUEGO DE BIBLIOTECA #########################################################     
+    def testRemoveJuego(self):
+        testCases = [
+            {
+                "inGame":"The legend of zelda ocarina of time",
+                "inBiblio":"Aventura",
+                "ex": "El juego ha sido eliminado de biblioteca: Aventura con exito"
+            },
+            {
+                "inGame":"The legend of zelda ocarina of time",
+                "inBiblio":"Shooter",
+                "ex": "La biblioteca: Shooter no Existe"
+            },
+            {
+                "inGame": "Grand theft auto V",
+                "inBiblio": "Aventura",
+                "ex": "El juego no existe en la biblioteca: Aventura"
+            }
+        ]
+        for tc in testCases:
+            rmMock = MagicMock()
+            rmMock.Remove_juego.return_value = tc["ex"]
+            real = removeGame(rmMock,tc["inGame"],tc["inBiblio"])
+            self.assertEqual(real,tc["ex"])
+
+######################################################### TEST INTEGRACION REMOVER JUEGO DE BIBLIOTECA #########################################################     
+    def testIntegrationRemoveJuego(self):
+        testCases = [
+            {
+                "inGame":"The Legend of Zelda: Ocarina of Time",
+                "inBiblio":"Aventura",
+                "ex": "El juego ha sido eliminado de biblioteca: Aventura con exito"
+            },
+            {
+                "inGame":"The Legend of zelda - ocarina of time",
+                "inBiblio": "Aventura",
+                "ex": "El juego no existe en la biblioteca: Aventura"
+            },
+            {
+                "inGame":"The legend of zelda ocarina of time",
+                "inBiblio":"Shooter",
+                "ex": "La biblioteca: Shooter no Existe"
+            },
+            {
+                "inGame": "Grand theft auto V",
+                "inBiblio": "Aventura",
+                "ex": "El juego no existe en la biblioteca: Aventura"
+            }
+        ]
+        for tc in testCases:
+            real = self.db.Remove_juego(tc["inGame"],tc["inBiblio"])
+            self.assertEqual(tc["ex"],real)
+######################################################### TEST MOCK MOSTRAR JUEGOS DE BIBLIOTECA #########################################################     
+    def  testShowJuego(self):
+        testCases = [
+            {
+                "inBiblio": "Aventura",
+                "ex": ["The Legend of Zelda: Ocarina of Time"]
+            },
+            {    
+                "inBiblio": "Shooter",
+                "ex": "La biblioteca: Shooter no existe"
+            }
+        ]
+        for tc in testCases:
+            shMock = MagicMock()
+            shMock.Show_juego.return_value = tc["ex"]
+            real = showGames(shMock,tc["inBiblio"])
+            self.assertEqual(real,tc["ex"])
+    
+######################################################### TEST INTEGRACION MOSTRAR JUEGOS DE BIBLIOTECA #########################################################     
+    def  testIntegrationShowJuego(self):
+        testCases = [
+            {
+                "inBiblio": "Aventura",
+                "ex": ["The Legend of Zelda: Ocarina of Time"]
+            },
+            {    
+                "inBiblio": "Shooter",
+                "ex": "La biblioteca: Shooter no existe"
+            },
+            {
+                "inBiblio": "Estrategia",
+                "ex": "La biblioteca: Estrategia esta vacia"
+            }
+        ]
+        for tc in testCases:
+            real = self.db.Show_juego(tc['inBiblio'])
+            self.assertEqual(real, tc["ex"])
+
 if __name__ == '__main__':
     unittest.main()
