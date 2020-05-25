@@ -30,19 +30,23 @@ class test_DB(unittest.TestCase):
         testCases=[
             {
                 "in": "Shooters",
-                "ex": "La Biblioteca se creo exitosamente"
+                "ex": "La biblioteca se creo exitosamente"
             },
             {
                 "in": "Accion",
-                "ex": "La Biblioteca se creo exitosamente"
+                "ex": "La biblioteca se creo exitosamente"
             },
             {
-                "in": 1,
-                "ex": "Error al crear biblioteca"
+                "in": 123456789,
+                "ex":'Error: Ingrese un valor de tipo String'
+            },
+            {
+                "in":True,
+                "ex": 'Error: Ingrese un valor de tipo String'
             },
             {
                 "in":"MEJORES JUEGOS",
-                "ex": "Error al crear biblioteca"
+                "ex": "Error: Remplace los espacios por guiones bajos"
             }
         ]
 
@@ -64,12 +68,16 @@ class test_DB(unittest.TestCase):
                 "ex": "La biblioteca se creo exitosamente"
             },
             {
-                "in": 1,
-                "ex": "Error al crear biblioteca"
+                "in": 123456789,
+                "ex":'Error: Ingrese un valor de tipo String'
+            },
+            {
+                "in":True,
+                "ex": 'Error: Ingrese un valor de tipo String'
             },
             {
                 "in":"MEJORES JUEGOS",
-                "ex": "Error al crear biblioteca"
+                "ex": "Error: Remplace los espacios por guiones bajos"
             }
         ]
         for tc in testCases:
@@ -123,6 +131,51 @@ class test_DB(unittest.TestCase):
                 },
                 "inBiblio": "Aventura",
                 "ex": "Juego agregado a biblioteca"
+            },
+            {
+                "inGame": "GTA V",
+                "inBiblio": "Aventura",
+                "ex": 'Error: Ingrese valor "juego" de tipo string'
+            },
+            {
+                "inGame": 123456789,
+                "inBiblio": "Aventura",
+                "ex": 'Error: Ingrese valor "juego" de tipo dict'
+            },
+            {
+                "inGame": True,
+                "inBiblio": "Aventura",
+                "ex": 'Error: Ingrese valor "juego" de tipo dict'
+            },
+            {
+                "inGame": {
+                    'name': 'Grand Theft Auto V', 
+                    'desc': 'Rockstar Games went bigger, since their previous installment of the series. You get the complicated and realistic world-building from Liberty City of GTA4 in the setting of lively and diverse Los Santos, from an old fan favorite GTA San Andreas. 561 different vehicles (including every transport you can operate) and the amount is rising with every update. \r\nSimultaneous storytelling from three unique perspectives: \r\nFollow Michael, ex-criminal living his life of leisure away from the past, Franklin, a kid that seeks the better future, and Trevor, the exact past Michael is trying to run away from. \r\nGTA Online will provide a lot of additional challenge even for the experienced players, coming fresh from the story mode. Now you will have other players around that can help you just as likely as ruin your mission. Every GTA mechanic up to date can be experienced by players through the unique customizable character, and community content paired with the leveling system tends to keep everyone busy and engaged.', 
+                    'rating': 4.48, 
+                    'fecha': '2013-09-17', 
+                    'picture': 'https://media.rawg.io/media/games/b11/b115b2bc6a5957a917bc7601f4abdda2.jpg', 
+                    'platforms': ['PC', 'PlayStation 4', 'PlayStation 3', 'Xbox 360', 'Xbox One'], 
+                    'devs': ['Rockstar North'], 
+                    'genres': ['Action', 'Adventure'],
+                    'esrb': 'Mature'
+                },
+                "inBiblio": 123456789,
+                "ex":'Error: Ingrese valor "biblioteca" de tipo string'
+            },
+            {
+                "inGame": {
+                    'name': 'Grand Theft Auto V', 
+                    'desc': 'Rockstar Games went bigger, since their previous installment of the series. You get the complicated and realistic world-building from Liberty City of GTA4 in the setting of lively and diverse Los Santos, from an old fan favorite GTA San Andreas. 561 different vehicles (including every transport you can operate) and the amount is rising with every update. \r\nSimultaneous storytelling from three unique perspectives: \r\nFollow Michael, ex-criminal living his life of leisure away from the past, Franklin, a kid that seeks the better future, and Trevor, the exact past Michael is trying to run away from. \r\nGTA Online will provide a lot of additional challenge even for the experienced players, coming fresh from the story mode. Now you will have other players around that can help you just as likely as ruin your mission. Every GTA mechanic up to date can be experienced by players through the unique customizable character, and community content paired with the leveling system tends to keep everyone busy and engaged.', 
+                    'rating': 4.48, 
+                    'fecha': '2013-09-17', 
+                    'picture': 'https://media.rawg.io/media/games/b11/b115b2bc6a5957a917bc7601f4abdda2.jpg', 
+                    'platforms': ['PC', 'PlayStation 4', 'PlayStation 3', 'Xbox 360', 'Xbox One'], 
+                    'devs': ['Rockstar North'], 
+                    'genres': ['Action', 'Adventure'],
+                    'esrb': 'Mature'
+                },
+                "inBiblio": True,
+                "ex":'Error: Ingrese valor "biblioteca" de tipo string'
             }
         ]
 
@@ -179,6 +232,51 @@ class test_DB(unittest.TestCase):
                 },
                 "inBiblio": "Aventura",
                 "ex": "Juego agregado a biblioteca"
+            },
+            {
+                "inGame": "GTA V",
+                "inBiblio": "Aventura",
+                "ex": 'Error: Ingrese valor "juego" de tipo dict'
+            },
+            {
+                "inGame": 123456789,
+                "inBiblio": "Aventura",
+                "ex": 'Error: Ingrese valor "juego" de tipo dict'
+            },
+            {
+                "inGame": True,
+                "inBiblio": "Aventura",
+                "ex": 'Error: Ingrese valor "juego" de tipo dict'
+            },
+            {
+                "inGame": {
+                    'name': 'Grand Theft Auto V', 
+                    'desc': 'Rockstar Games went bigger, since their previous installment of the series. You get the complicated and realistic world-building from Liberty City of GTA4 in the setting of lively and diverse Los Santos, from an old fan favorite GTA San Andreas. 561 different vehicles (including every transport you can operate) and the amount is rising with every update. \r\nSimultaneous storytelling from three unique perspectives: \r\nFollow Michael, ex-criminal living his life of leisure away from the past, Franklin, a kid that seeks the better future, and Trevor, the exact past Michael is trying to run away from. \r\nGTA Online will provide a lot of additional challenge even for the experienced players, coming fresh from the story mode. Now you will have other players around that can help you just as likely as ruin your mission. Every GTA mechanic up to date can be experienced by players through the unique customizable character, and community content paired with the leveling system tends to keep everyone busy and engaged.', 
+                    'rating': 4.48, 
+                    'fecha': '2013-09-17', 
+                    'picture': 'https://media.rawg.io/media/games/b11/b115b2bc6a5957a917bc7601f4abdda2.jpg', 
+                    'platforms': ['PC', 'PlayStation 4', 'PlayStation 3', 'Xbox 360', 'Xbox One'], 
+                    'devs': ['Rockstar North'], 
+                    'genres': ['Action', 'Adventure'],
+                    'esrb': 'Mature'
+                },
+                "inBiblio": 123456789,
+                "ex":'Error: Ingrese valor "biblioteca" de tipo string'
+            },
+            {
+                "inGame": {
+                    'name': 'Grand Theft Auto V', 
+                    'desc': 'Rockstar Games went bigger, since their previous installment of the series. You get the complicated and realistic world-building from Liberty City of GTA4 in the setting of lively and diverse Los Santos, from an old fan favorite GTA San Andreas. 561 different vehicles (including every transport you can operate) and the amount is rising with every update. \r\nSimultaneous storytelling from three unique perspectives: \r\nFollow Michael, ex-criminal living his life of leisure away from the past, Franklin, a kid that seeks the better future, and Trevor, the exact past Michael is trying to run away from. \r\nGTA Online will provide a lot of additional challenge even for the experienced players, coming fresh from the story mode. Now you will have other players around that can help you just as likely as ruin your mission. Every GTA mechanic up to date can be experienced by players through the unique customizable character, and community content paired with the leveling system tends to keep everyone busy and engaged.', 
+                    'rating': 4.48, 
+                    'fecha': '2013-09-17', 
+                    'picture': 'https://media.rawg.io/media/games/b11/b115b2bc6a5957a917bc7601f4abdda2.jpg', 
+                    'platforms': ['PC', 'PlayStation 4', 'PlayStation 3', 'Xbox 360', 'Xbox One'], 
+                    'devs': ['Rockstar North'], 
+                    'genres': ['Action', 'Adventure'],
+                    'esrb': 'Mature'
+                },
+                "inBiblio": True,
+                "ex":'Error: Ingrese valor "biblioteca" de tipo string'
             }
         ]
         for tc in testCases:
@@ -201,6 +299,16 @@ class test_DB(unittest.TestCase):
                 "inGame": "Grand theft auto V",
                 "inBiblio": "Aventura",
                 "ex": "El juego no existe en la biblioteca: Aventura"
+            },
+            {
+                "inGame": True,
+                "inBiblio": "Aventura",
+                "ex": 'Error: Ingrese valor "juego" de tipo string'
+            },
+            {
+                "inGame": 123456789,
+                "inBiblio": "Aventura",
+                "ex": 'Error: Ingrese valor "juego" de tipo string'
             }
         ]
         for tc in testCases:
@@ -231,6 +339,16 @@ class test_DB(unittest.TestCase):
                 "inGame": "Grand theft auto V",
                 "inBiblio": "Aventura",
                 "ex": "El juego no existe en la biblioteca: Aventura"
+            },
+            {
+                "inGame": True,
+                "inBiblio": "Aventura",
+                "ex": 'Error: Ingrese valor "juego" de tipo string'
+            },
+            {
+                "inGame": 123456789,
+                "inBiblio": "Aventura",
+                "ex": 'Error: Ingrese valor "juego" de tipo string'
             }
         ]
         for tc in testCases:
@@ -246,6 +364,18 @@ class test_DB(unittest.TestCase):
             {    
                 "inBiblio": "Shooter",
                 "ex": "La biblioteca: Shooter no existe"
+            },
+            {
+                "inBiblio": "Estrategia",
+                "ex": "La biblioteca: Estrategia esta vacia"
+            },
+            {
+                "inBiblio": 123456789,
+                "ex": 'Error: Ingrese un valor de tipo String'
+            },
+            {
+                "inBiblio": True,
+                "ex": 'Error: Ingrese un valor de tipo String'
             }
         ]
         for tc in testCases:
@@ -268,6 +398,14 @@ class test_DB(unittest.TestCase):
             {
                 "inBiblio": "Estrategia",
                 "ex": "La biblioteca: Estrategia esta vacia"
+            },
+            {
+                "inBiblio": 123456789,
+                "ex": 'Error: Ingrese un valor de tipo String'
+            },
+            {
+                "inBiblio": True,
+                "ex": 'Error: Ingrese un valor de tipo String'
             }
         ]
         for tc in testCases:

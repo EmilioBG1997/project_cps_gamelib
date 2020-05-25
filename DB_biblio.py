@@ -24,7 +24,11 @@ class DB_Biblioteca(DataBase):
         self.conexion.close()
 ######################################################### CREAR BIBLIOTECA #########################################################     
 
-    def Create_Biblio(self, nombre):
+    def Create_Biblio(self, nombre: str):
+        if type(nombre) != str:
+            return 'Error: Ingrese un valor de tipo String'
+        elif " " in nombre:
+            return "Error: Remplace los espacios por guiones bajos"
         try:
             self.cursor.execute(f'''
                 CREATE TABLE IF NOT EXISTS {nombre} (
@@ -48,12 +52,16 @@ class DB_Biblioteca(DataBase):
 ######################################################### AGREGAR JUEGO A BIBLIOTECA #########################################################     
 
     def Add_juego(self, juego: dict, nombre: str):
+        if type(juego) != dict:
+            return 'Error: Ingrese valor "juego" de tipo dict'
+        elif type(nombre) != str:
+            return 'Error: Ingrese valor "biblioteca" de tipo string'
         try:
             select = f"SELECT id FROM {nombre} WHERE name = '{juego['name']}'"
             if self.conexion.execute(select).fetchone():
                 return "El juego ya existe en la biblioteca"
         except:
-                return "La biblioteca no existe"
+               return "La biblioteca no existe"
         self.cursor.execute(f'''
         INSERT INTO {nombre} (name, description, rating, release, picture, platforms, developers, genre, esrb) 
         VALUES ("{juego.get('name')}", "{juego.get('desc')}", {juego.get("rating")},"{juego.get("fecha")}","{juego.get('picture')}","{juego.get('platforms')}","{juego.get('devs')}","{juego.get('genres')}","{juego.get('esrb')}");
@@ -64,6 +72,10 @@ class DB_Biblioteca(DataBase):
 ######################################################### REMOVER JUEGO DE BIBLIOTECA #########################################################     
 
     def Remove_juego(self,juego: str,nombre:str):
+        if type(juego) != str:
+            return 'Error: Ingrese valor "juego" de tipo string'
+        elif type(nombre) != str:
+            return 'Error: Ingrese valor "biblioteca" de tipo string'
         try:
             select = f"SELECT id from {nombre} WHERE name = '{juego}'"
             if self.conexion.execute(select).fetchone():   
@@ -77,7 +89,9 @@ class DB_Biblioteca(DataBase):
 
 ######################################################### REMOVER JUEGO DE BIBLIOTECA #########################################################     
 
-    def Show_juego(self, nombre):
+    def Show_juego(self, nombre: str):
+        if type(nombre) != str:
+            return 'Error: Ingrese un valor de tipo String'
         try:
             lista = []
             resultados = f"SELECT NAME FROM {nombre}"
