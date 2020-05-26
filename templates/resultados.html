@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Resultado</title>
+    <style>
+        body{
+            background: url(../static/background.jpg) no-repeat center center fixed; 
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="card offset-4">
+                <div class="card-image">
+                    <img src="{{data.picture}}">
+                    <span class="card-title"></span>
+                </div>
+                <div class="card-content">
+                    <table>
+                        <tr>
+                            <td>Nombre</td>
+                            <td>{{data.name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Descripcion</td>
+                            <td>{{data.desc}}</td>
+                        </tr>
+                        <tr>
+                            <td>Rating</td>
+                            <td>{{data.rating}}</td>
+                        </tr>
+                        <tr>
+                            <td>Fecha de lanzamiento</td>
+                            <td>{{data.fecha}}</td>
+                        </tr>
+                        <tr>
+                            <td>Plataformas</td>
+                            <td>{{data.platforms}}</td>
+                        </tr>
+                        <tr>
+                            <td>Desarrolladores</td>
+                            <td>{{data.devs}}</td>
+                        </tr>
+                        <tr>
+                            <td>Genero</td>
+                            <td>{{data.genres}}</td>
+                        </tr>
+                        <tr>
+                            <td>Clasificacion ESRB</td>
+                            <td>{{data.esrb}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="card-action">
+                    <a href="#">This is a link</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
