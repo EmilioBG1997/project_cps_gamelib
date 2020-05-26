@@ -2,7 +2,6 @@ from abc import abstractmethod, ABCMeta
 import requests
 import json
 import sqlite3
-from juego import *
 ######################################################### INTERFACE BASE DE DATOS #########################################################     
 
 class DataBase(metaclass=ABCMeta):
@@ -12,6 +11,14 @@ class DataBase(metaclass=ABCMeta):
     
     @abstractmethod
     def Create_Biblio(self):
+        pass
+    
+    @abstractmethod
+    def Remove_juego(self):
+        pass
+    
+    @abstractmethod
+    def Show_juego(self):
         pass
 
 ######################################################### CLASE BASE DE DATOS #########################################################     
@@ -103,6 +110,7 @@ class DB_Biblioteca(DataBase):
                 return f"La biblioteca: {nombre} esta vacia"
         except:
             return f"La biblioteca: {nombre} no existe"
+
 ######################################################### FUNCION MOCK CREAR BIBLIO ######################################################### 
 def addBiblio(db, biblio):
     r = db.Create_Biblio(biblio)

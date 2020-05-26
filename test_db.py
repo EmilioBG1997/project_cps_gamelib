@@ -135,7 +135,7 @@ class test_DB(unittest.TestCase):
             {
                 "inGame": "GTA V",
                 "inBiblio": "Aventura",
-                "ex": 'Error: Ingrese valor "juego" de tipo string'
+                "ex": 'Error: Ingrese valor "juego" de tipo dict'
             },
             {
                 "inGame": 123456789,
