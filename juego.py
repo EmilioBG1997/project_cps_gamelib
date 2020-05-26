@@ -63,7 +63,9 @@ class rawg_juego(api_juego):
       r=str(r["slug"])
       r=requests.get(f"{self.url}{r}")
       r=json.loads(r.text)
-      game=juego(r['name'],r['description_raw'],r['rating'],r['released'],r["background_image"],[i.get("platform",{}).get("name") for i in r['platforms']],[i.get("name") for i in r['developers']],[i.get("name",{}) for i in r['genres']], r['esrb_rating'].get("name"))
+      if r["esrb_rating"] == None:
+          r["esrb_rating"] = "None"
+      game=juego(r['name'],r['description_raw'],r['rating'],r['released'],r["background_image"],[i.get("platform",{}).get("name") for i in r['platforms']],[i.get("name") for i in r['developers']],[i.get("name",{}) for i in r['genres']], r["esrb_rating"])
       return game
     except:
       return -1 ##JUEGO NO ENCONTRADO
@@ -76,7 +78,7 @@ def build_juego(api, game):
 
 if __name__ == '__main__':
   rawg=rawg_juego()
-  game=build_juego(rawg,'gta v')
+  game=build_juego(rawg,'gta')
   try:
     print(game.get_everything())
   except:
