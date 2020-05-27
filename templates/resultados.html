@@ -60,7 +60,11 @@
                     </table>
                 </div>
                 <div class="card-action">
-                    <a href="#">This is a link</a>
+                    <form action="/data-add" method="post">
+                        <input type="hidden" name="table" value="{{data.genres[0]}}"></input>
+                        <input type="hidden" name="juego" value="{{data}}">
+                        <button type="submit" class="btn waves-effect">Agregar a {{data.genres[0]}}</button>
+                    </form>
                 </div>
             </div>
         </div>

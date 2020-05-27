@@ -29,6 +29,8 @@ class DB_Biblioteca(DataBase):
 
     def Close(self):
         self.conexion.close()
+    def Commit(self):
+        self.conexion.commit()
 ######################################################### CREAR BIBLIOTECA #########################################################     
 
     def Create_Biblio(self, nombre: str):

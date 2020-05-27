@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Exito:D</title>
+    <style>
+        body{
+            background-color: #005344;
+        }
+        .card-content{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class = "container">
+        <div class = "card offset-4">
+            <div class = "card-image">
+                <img src="{{dict['picture']}}" alt="{{dict['name']}} image">
+            </div>
+            <div class = "card-content">
+                <h2>Tu juego</h2>
+                <h3>{{dict['name']}}</h3>
+                <h3>Se agrego con exito!!</h3>
+            </div>
+            <div class = "card-action">
+                <a href="/juegos">Buscar otro juego:D</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
