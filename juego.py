@@ -65,6 +65,8 @@ class rawg_juego(api_juego):
       r=json.loads(r.text)
       if r["esrb_rating"] == None:
           r["esrb_rating"] = "None"
+      else:
+        r["esrb_rating"] = r["esrb_rating"].get("name")
       game=juego(r['name'],r['description_raw'],r['rating'],r['released'],r["background_image"],[i.get("platform",{}).get("name") for i in r['platforms']],[i.get("name") for i in r['developers']],[i.get("name",{}) for i in r['genres']], r["esrb_rating"])
       return game
     except:
