@@ -30,16 +30,16 @@ def get_biblio_list():
     results = bib.cursor.execute(
         '''
         SELECT name FROM sqlite_master
-        WHERE type='table'
+        WHERE type='table' AND name <> 'sqlite_sequence'
         ORDER BY name;
         '''
     )
     lista = results.fetchall()
-    x = ""
+    x = []
     for i in lista:
-        x+=f"nombre: {i} \n"
+        x.append(i[0])
     bib.Close()
-    return x
+    return render_template("biblioteca.html", x=x)
     
 
 @app.route('/data-add',methods=['POST'])
