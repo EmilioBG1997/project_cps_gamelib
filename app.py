@@ -66,7 +66,31 @@ def add():
     except:
         return render_template("error.html")
 
+@app.route("/create-biblio")
+def createBiblio():
+    return render_template("create-biblio.html")
 
+@app.route("/create-biblio/result", methods=["POST"])
+def createBiblioResult():
+    result = request.form['Nueva_biblio']
+    db = DB_Biblioteca()
+    result = db.Create_Biblio(result)
+    if result == "La biblioteca se creo exitosamente":
+        return render_template("Create-biblio-success.html")
+    else:
+        return render_template("error.html", result = result)
+
+@app.route("/biblioteca/<biblio>")
+def showBiblioteca(biblio):
+    db = DB_Biblioteca()
+    bibliotecas = db.Show_juego(biblio)
+    if type(bibliotecas) == list:
+        return render_template("biblioteca-result.html", bibliotecas = bibliotecas, nombre = biblio)
+    else:
+        error = True
+        return render_template("biblioteca-result.html", bibliotecas = bibliotecas, nombre = biblio, error = error)
+    
+    
 if __name__ == '__main__':
     app.debug = True
     app.run(host="0.0.0.0")
