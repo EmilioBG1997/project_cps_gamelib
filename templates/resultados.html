@@ -13,6 +13,11 @@
             -o-background-size: cover;
             background-size: cover;
         }
+        .card-action{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
     </style>
 </head>
 <body>
@@ -65,6 +70,16 @@
                         <input type="hidden" name="juego" value="{{data}}">
                         <button type="submit" class="btn waves-effect">Agregar a {{data.genres[0]}}</button>
                     </form>
+                    {% for i in dict %}
+                        {% if i!= data.genres[0] %}
+                            <form action="/data-add" method="post">
+                                <input type="hidden" name="table" value="{{i}}"></input>
+                                <input type="hidden" name="juego" value="{{data}}">
+                                <button type="submit" class="btn waves-effect">Agregar a {{i}}</button>
+                            </form>
+                        {% endif %}
+                    {% endfor %}
+
                 </div>
             </div>
         </div>

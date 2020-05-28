@@ -20,8 +20,27 @@ def get_juego():
         rawg = rawg_juego()
         game = build_juego(rawg, game)
         data = game.get_everything()
-        return render_template("resultados.html", data = data)
-    except:
+
+        db = DB_Biblioteca()
+        res = db.cursor.execute(
+        '''
+        Select name FROM sqlite_master
+        Where type = 'table' and name <>
+        'sqlite_sequence' ORDER by name;
+        '''
+        )
+        
+        lista = res.fetchall()
+        
+        x = []
+        for i in lista:
+            x.append(i[0])
+        db.Close()
+
+        return render_template("resultados.html", data = data, dict = x)
+        
+    except Exception as e:
+        print(str(e))
         return render_template("error.html")
 
 @app.route('/biblioteca') ##Pagina Lista de Bibliotecas
