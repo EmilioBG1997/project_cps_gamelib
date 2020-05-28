@@ -32,7 +32,7 @@ The following programs must be installed in your computer in order to be able to
     
     Clone the repo somewhere in your machine 
     (open a terminal and paste the following, then press enter)
-    ```$git clone https://github.com/EmilioBG1997/project_cps_gamelib
+    ```$git clone https://github.com/EmilioBG1997/project_cps_gamelib```
 
 - Step 2:
     
