@@ -79,8 +79,10 @@ class DB_Biblioteca(DataBase):
         return "Juego agregado a biblioteca"
     
 ######################################################### REMOVER JUEGO DE BIBLIOTECA #########################################################     
-
+    
     def Remove_juego(self,juego: str,nombre:str):
+        ##NOMBRE = TABLA
+        ##juego = titulo
         if type(juego) != str:
             return 'Error: Ingrese valor "juego" de tipo string'
         elif type(nombre) != str:

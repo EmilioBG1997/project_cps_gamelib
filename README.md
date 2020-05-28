@@ -9,12 +9,6 @@
 
 SANTIAGO CHIO BENAVIDES
 
-## What is this?
-
-
-- EMILIO BARRERA GONZALEZ
-- LUIS FERNANDO GARCIA MORALES
-
 ## PROFFESSOR:
 
 - SANTIAGO CHIO BENAVIDES
@@ -36,8 +30,6 @@ The following programs must be installed in your computer in order to be able to
 - python 3
 - sqlite 3
 
-
-
 ## HOW TO RUN
 - Step 1: 
     
@@ -49,5 +41,5 @@ The following programs must be installed in your computer in order to be able to
     
     I.E:
     
-    ```$python3 test_juego.py```
+    ```$python3 app.py```
 

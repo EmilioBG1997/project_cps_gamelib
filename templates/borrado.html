@@ -3,10 +3,10 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <title>Exito:D</title>
+    <title>Borrado con Exito:D</title>
     <style>
         body{
-            background: url(../static/libradd.jpg) no-repeat center center fixed; 
+            background: url(../static/deletion.jpg) no-repeat center center fixed; 
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -20,16 +20,13 @@
 <body>
     <div class = "container">
         <div class = "card offset-4">
-            <div class = "card-image">
-                <img src="{{dict['picture']}}" alt="{{dict['name']}} image">
-            </div>
             <div class = "card-content">
                 <h2>Tu juego</h2>
-                <h3>{{dict['name']}}</h3>
-                <h3>Se agrego con exito!!</h3>
+                <h3>{{dic['name']}}</h3>
+                <h3>Se Borro con exito de {{dic['table']}}!!</h3>
             </div>
             <div class = "card-action">
-                <a href="/juegos">Buscar otro juego:D</a>
+                <a class="btn waves-effect" href="/biblioteca/{{dic['table']}}">Regresar a la biblioteca</a>
             </div>
         </div>
     </div>

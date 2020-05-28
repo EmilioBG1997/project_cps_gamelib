@@ -28,10 +28,22 @@
                         <h6 class="collection-item">{{bibliotecas}}</h6>
                     {%else%}
                         {% for i in bibliotecas%}
-                            <li class="collection-item"><div>{{i}}<a href="/biblioteca/{{nombre}}/{{i}}" class="secondary-content"><i class="material-icons">cancel</i></a></div></li>
-                        {% endfor %}
+                            <form action="/biblioteca-borrado" method = "POST">
+                                <input type="hidden" name="name" value = "{{i}}">
+                                <input type="hidden" name="table" value = "{{nombre}}">
+                                <li class="collection-item">
+                                    <div>
+                                        {{i}}
+                                        <button type="submit" class="btn wave-effect secondary-content"><i class="material-icons">cancel</i></button>
+                                    </div>
+                                </li>
+                            </form>
+                            {% endfor %}
                     {%endif%}
                 </div>
+            </div>
+            <div class = "card-action">
+                <a href="/biblioteca" class = "btn wave-effect"> Regresar a bibliotecas</a>
             </div>
         </div>
     </div>
