@@ -14,6 +14,10 @@ class DataBase(metaclass=ABCMeta):
         pass
     
     @abstractmethod
+    def Remove_Biblio(self):
+        pass
+    
+    @abstractmethod
     def Remove_juego(self):
         pass
     
@@ -57,6 +61,22 @@ class DB_Biblioteca(DataBase):
             return "La biblioteca se creo exitosamente"
         except:
             return "Error al crear biblioteca"
+
+######################################################### BORRAR BIBLIOTECA #########################################################     
+
+    def Remove_Biblio(self, nombre:str):
+        if type(nombre) != str:
+            return 'Error: Ingrese un valor de tipo String'
+        elif " " in nombre:
+            return "Error: Remplace los espacios por guiones bajos"
+        try:
+            self.cursor.execute(f'''
+                DROP TABLE IF EXISTS {nombre};
+            ''')
+            self.conexion.commit()
+            return "La biblioteca se borro exitosamente"
+        except:
+            return "Error al borrar la biblioteca"
 
 ######################################################### AGREGAR JUEGO A BIBLIOTECA #########################################################     
 
@@ -119,6 +139,11 @@ class DB_Biblioteca(DataBase):
 def addBiblio(db, biblio):
     r = db.Create_Biblio(biblio)
     return r
+
+######################################################### FUNCION MOCK CREAR BIBLIO ######################################################### 
+def removeBiblio(db,biblio):
+    r = db.Remove_Biblio(biblio)
+    return r
 ######################################################### FUNCION MOCK AGREGAR JUEGO A BIBILIOTECA #########################################################     
 
 def addGame(db, juego,biblio):
@@ -148,4 +173,4 @@ if __name__ == '__main__':
                     'esrb': 'Everyone'
                 }
     # print(db.Add_juego(juego,"Aventura"))
-    print(db.Show_juego("aventura"))
+    print(db.Remove_Biblio("Aventura"))

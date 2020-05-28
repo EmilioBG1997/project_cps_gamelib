@@ -83,6 +83,32 @@ class test_DB(unittest.TestCase):
         for tc in testCases:
             real = self.db.Create_Biblio(tc["in"])
             self.assertEqual(tc["ex"],real)
+
+######################################################### TEST INTEGRACION MOSTRAR JUEGOS DE BIBLIOTECA #########################################################     
+    def testRemoveJuego(self):
+        testCases = [
+            {
+                "inBiblio": "Estrategia",
+                "ex": "La biblioteca se borro exitosamente"
+            },
+            {
+                "inBiblio": "Shooter",
+                "ex": "Error al borrar la biblioteca"
+            },
+            {
+                "inBiblio" : 123456789,
+                "ex" : 'Error: Ingrese un valor de tipo String'
+            },
+            {
+                "inBiblio": "Mejores Juegos",
+                "ex" : "Error: Remplace los espacios por guiones bajos"
+            }
+        ]
+        for tc in testCases:
+            RmMock = MagicMock()
+            RmMock.Remove_Biblio.return_value = tc["ex"]
+            real = removeBiblio(RmMock,tc["inBiblio"])
+            self.assertEqual(real,tc["ex"])
 ######################################################### TEST MOCK AGREGAR JUEGO A BIBLIOTECA#########################################################     
 
     def testAddJuego(self):
@@ -411,6 +437,7 @@ class test_DB(unittest.TestCase):
         for tc in testCases:
             real = self.db.Show_juego(tc['inBiblio'])
             self.assertEqual(real, tc["ex"])
+
 
 if __name__ == '__main__':
     unittest.main()
