@@ -7,34 +7,30 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         body{
-            background: url(../static/Library2.jpg) no-repeat center center fixed; 
+            background: url(/static/Delete-biblio.jpg) no-repeat center center fixed; 
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
         }
+        .container{
+            margin-top: 15%;
+        }
     </style>
-    <title>Biblioteca</title>
+    <title>Remover Biblioteca</title>
 </head>
-<body>
+<body background=>
     <div class="container">
         <div class="card">
-            <div class="card-title center">
-                <h5>Bibliotecas</h5>
+            <div class="card-content center">
+                <h5>{{resultado}}</h5>
             </div>
-            <div class="card-content">
-                <div class="collection">
-                    {% for i in x %}
-                    <li class="collection-item"><div><a href="/biblioteca/{{i}}">{{i}}</a><a href="biblioteca/remove-biblio/{{i}}" class="secondary-content"><i class="material-icons">cancel</i></a></div></li>
-                    {%endfor%}
-                </div>            
-            </div>
-            <div class="card-action">
-                <a href="..">Regresar Al menu</a>
-                <a href="create-biblio">Crear Biblioteca</a>
+            <div class="card-action center">
+                <a href="/biblioteca">Regresar a biblioteca</a>
             </div>
         </div>
     </div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>

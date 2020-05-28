@@ -84,6 +84,57 @@ class test_DB(unittest.TestCase):
             real = self.db.Create_Biblio(tc["in"])
             self.assertEqual(tc["ex"],real)
 
+######################################################### TEST MOCK BORRAR BIBLIOTECA #########################################################     
+
+    def testRemoveBiblio(self):
+        testCases = [
+            {
+                "inBiblio" : "Aventura",
+                "ex" : "La biblioteca se borro exitosamente"
+            },
+            {
+                "inBiblio" : "Shooter",
+                "ex" : "Error al borrar la biblioteca"
+            },
+            {
+                "inBiblio": 123456789,
+                "ex" : 'Error: Ingrese un valor de tipo String'
+            },
+            {
+                "inBiblio": "MEJORES JUEGOS",
+                "ex" : "Error: Remplace los espacios por guiones bajos"
+            }
+        ]
+        for tc in testCases:
+            rmMock = MagicMock()
+            rmMock.Remove_Biblio.return_value = tc['ex']
+            real = removeBiblio(rmMock,tc['inBiblio'])
+            self.assertEqual(tc["ex"],real)
+
+######################################################### TEST INTEGRACION MOSTRAR JUEGOS DE BIBLIOTECA #########################################################     
+
+    def testIntegrationRemoveBiblio(self):
+        testCases = [
+            {
+                "inBiblio" : "Aventura",
+                "ex" : "La biblioteca se borro exitosamente"
+            },
+            {
+                "inBiblio" : "Shooter",
+                "ex" : "Error: la biblioteca no existe"
+            },
+            {
+                "inBiblio": 123456789,
+                "ex" : 'Error: Ingrese un valor de tipo String'
+            },
+            {
+                "inBiblio": "MEJORES JUEGOS",
+                "ex" : "Error: Remplace los espacios por guiones bajos"
+            }
+        ]
+        for tc in testCases:
+            real = self.db.Remove_Biblio(tc["inBiblio"])
+            self.assertEqual(real, tc["ex"])       
 ######################################################### TEST INTEGRACION MOSTRAR JUEGOS DE BIBLIOTECA #########################################################     
     def testRemoveJuego(self):
         testCases = [

@@ -71,12 +71,12 @@ class DB_Biblioteca(DataBase):
             return "Error: Remplace los espacios por guiones bajos"
         try:
             self.cursor.execute(f'''
-                DROP TABLE IF EXISTS {nombre};
+                DROP TABLE {nombre};
             ''')
             self.conexion.commit()
             return "La biblioteca se borro exitosamente"
         except:
-            return "Error al borrar la biblioteca"
+            return "Error: la biblioteca no existe"
 
 ######################################################### AGREGAR JUEGO A BIBLIOTECA #########################################################     
 

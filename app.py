@@ -118,7 +118,12 @@ def deleteJuego():
     db.Close()
     dic = {'name': name, 'table': table}
     return(render_template("borrado.html", dic = dic))
-    
+
+@app.route("/biblioteca/remove-biblio/<biblioteca>")
+def removeBiblioteca(biblioteca):
+    db = DB_Biblioteca()
+    resultado = db.Remove_Biblio(biblioteca)
+    return render_template("remove-biblio.html", resultado = resultado)
 if __name__ == '__main__':
     app.debug = True
     app.run(host="0.0.0.0")
